@@ -1,4 +1,4 @@
-.  "C:\ProgramData\QRM\WriteToLog.ps1"
+.  "C:\ProgramData\WriteToLog.ps1"
 
 $ServerInstance = "localhost"
 

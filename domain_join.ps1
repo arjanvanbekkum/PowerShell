@@ -1,4 +1,4 @@
-.  "C:\ProgramData\QRM\WriteToLog.ps1"
+.  "C:\ProgramData\WriteToLog.ps1"
 
 LogWrite "Starting..."
 
@@ -11,7 +11,7 @@ if ((Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain -eq $false )
 
     $var = Invoke-WebRequest -Uri http://169.254.169.254/latest/dynamic/instance-identity/document
     $doc = $var | ConvertFrom-Json
-    $ou_qrm_hpc = $doc.accountId
+    $ou_hpc = $doc.accountId
 
     LogWrite "Getting secret start..."
     $secret_manager = Get-SecSecretValue -SecretId $secrets_manager_secret_id
@@ -23,7 +23,7 @@ if ((Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain -eq $false )
     LogWrite "Converting to secure string..."
     $credential = New-Object System.Management.Automation.PSCredential($username,$password)
     
-    Add-Computer -DomainName "$domain_name.$domain_tld" -OUPath "OU=$ou_qrm_hpc,OU=$domain_name,DC=$domain_name,DC=$domain_tld" -Credential $credential -Passthru -Verbose -Force -Restart
+    Add-Computer -DomainName "$domain_name.$domain_tld" -OUPath "OU=$ou_hpc,OU=$domain_name,DC=$domain_name,DC=$domain_tld" -Credential $credential -Passthru -Verbose -Force -Restart
 }
 
 LogWrite "Done"

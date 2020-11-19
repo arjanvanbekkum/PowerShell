@@ -1,4 +1,4 @@
-.  "C:\ProgramData\QRM\WriteToLog.ps1"
+.  "C:\ProgramData\WriteToLog.ps1"
 
 # get the ID of the instance
 $instance = Invoke-WebRequest -Uri http://169.254.169.254/latest/meta-data/instance-id -UseBasicParsing
